@@ -61,7 +61,7 @@ if (window.location.pathname.includes('cart.html')) {
 function checkout() {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
   const options = {
-    key: 'YOUR_RAZORPAY_KEY', // Replace with your Razorpay key
+    key: 'rzp_test_bwPWZCZLu6BTH4', // Replace with your Razorpay key
     amount: total * 100, // Amount in paise
     currency: 'INR',
     name: 'Your Store',
