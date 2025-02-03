@@ -57,3 +57,29 @@ function renderCart() {
 if (window.location.pathname.includes('cart.html')) {
   renderCart();
 }
+
+function checkout() {
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const options = {
+    key: 'YOUR_RAZORPAY_KEY', // Replace with your Razorpay key
+    amount: total * 100, // Amount in paise
+    currency: 'INR',
+    name: 'Your Store',
+    description: 'Payment for your order',
+    handler: function (response) {
+      alert('Payment successful!');
+      localStorage.removeItem('cart');
+      window.location.href = 'index.html';
+    },
+    prefill: {
+      name: JSON.parse(localStorage.getItem('user')).name,
+      email: JSON.parse(localStorage.getItem('user')).email,
+    },
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+}
+
+
+
